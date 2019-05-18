@@ -22,7 +22,9 @@ class CariPendonorPresenter(val context: Context, val v:CariPendonorView){
         val lm: LocationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
 
-        AndroidNetworking.get(ApiEndPoint.PENDONOR+"external/geocoding/reverse?lat=${location.latitude.toString()}&lng=${location.longitude.toString()}")
+        AndroidNetworking.get(ApiEndPoint.PENDONOR+"external/geocoding/reverse")
+            .addQueryParameter("lat",location.latitude.toString())
+            .addQueryParameter("lng",location.longitude.toString())
             .setPriority(Priority.HIGH)
             .build()
             .getAsJSONObject(object: JSONObjectRequestListener{
@@ -33,7 +35,7 @@ class CariPendonorPresenter(val context: Context, val v:CariPendonorView){
                     if(response?.getJSONArray("results")?.length() != 0){
                         val locationName = response?.getJSONArray("results")?.getJSONObject(0)?.getString("formatted_address")
                         val data = HashMap<String, String>()
-                        data.put("location_name",locationName!!)
+                        data["location_name"] = locationName!!
                         CariPendonorActivity.LAT = location.latitude.toString()
                         CariPendonorActivity.LNG = location.longitude.toString()
                         v.onUserCurrentLocationLoaded(data)

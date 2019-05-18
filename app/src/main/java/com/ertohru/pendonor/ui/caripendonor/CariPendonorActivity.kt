@@ -4,10 +4,14 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.location.Criteria
 import android.location.LocationManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.MenuItem
+import com.afollestad.materialdialogs.MaterialDialog
 import com.ertohru.pendonor.R
 import com.ertohru.pendonor.base.BaseActivity
 import com.ertohru.pendonor.ui.mappendonor.MapPendonorActivity
@@ -36,7 +40,8 @@ class CariPendonorActivity : BaseActivity(),CariPendonorView {
 
         spinnerGolonganDarahACP.setAdapter(GolonganDarahSpinner(this).list())
 
-        presenter.loadUserCurrentLocation()
+        if(isLocationEnabled())
+            presenter.loadUserCurrentLocation()
 
         btnGantiACP.setOnClickListener {
             placePicker()
@@ -45,8 +50,30 @@ class CariPendonorActivity : BaseActivity(),CariPendonorView {
         btnACP.setOnClickListener {
             if (LAT == "" || LNG == ""){
                 toastError("Lokasi belum ditentukan.")
+            }else if(spinnerGolonganDarahACP.text.isNullOrEmpty()){
+                toastError("Golongan darah belum dipilih")
             }else{
-                startActivity(Intent(this, MapPendonorActivity::class.java))
+                val intent = Intent(this, MapPendonorActivity::class.java)
+                intent.putExtra("golongan_darah",spinnerGolonganDarahACP.text.toString())
+                startActivity(intent)
+            }
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if(!isLocationEnabled()){
+            MaterialDialog(this).show {
+                title(text = "Konfirmasi")
+                message(text = "Aplikasi membutuhkan GPS ponsel untuk aktif")
+                positiveButton(text = "Aktifkan"){
+                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                }
+                negativeButton(text = "Batal"){
+                    finish()
+                }
             }
         }
 
@@ -89,6 +116,13 @@ class CariPendonorActivity : BaseActivity(),CariPendonorView {
             LAT = vanillaAddress.latitude.toString()
             LNG = vanillaAddress.longitude.toString()
         }
+    }
+
+    private fun isLocationEnabled() : Boolean {
+        val locationManager = applicationContext.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) && locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
     }
 
 }

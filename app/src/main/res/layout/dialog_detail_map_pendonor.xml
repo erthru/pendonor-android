@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" android:paddingLeft="21dp" android:paddingRight="21dp">
+
+    <TextView
+            android:text="Pendonor Detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="21dp"
+            android:textStyle="bold"/>
+    <TextView
+            android:text="Nama Lengkap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/lbNamaLengkapDDMP" android:textStyle="bold"
+            android:textSize="18dp" android:layout_marginTop="10dp"/>
+    <TextView
+            android:text="RESUS: -"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/lbResusDDMP"/>
+</LinearLayout>

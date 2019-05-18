@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" android:layout_marginBottom="2dp" app:cardCornerRadius="6dp"
+            android:clickable="true" android:foreground="?attr/selectableItemBackground" android:id="@+id/cardLMP">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:padding="16dp">
+            <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" app:srcCompat="@drawable/ic_person"
+                    android:id="@+id/imgLMP"/>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_marginLeft="16dp"
+                    android:gravity="center_vertical">
+                <TextView
+                        android:text="Full Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/lbNameLMP" android:textStyle="bold"
+                        android:textSize="17dp"/>
+                <TextView
+                        android:text="Resus : -"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/lbResusLMP"
+                        android:textAlignment="viewStart"
+                />
+                <TextView
+                        android:text="0 KM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/lbListLMP"
+                        android:textAlignment="textEnd" android:textColor="@color/warningColor"
+                        android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

@@ -1,9 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          xmlns:map="http://schemas.android.com/apk/res-auto"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:id="@+id/map"
-          tools:context=".ui.mappendonor.MapPendonorActivity"
-          android:name="com.google.android.gms.maps.SupportMapFragment"/>
+<LinearLayout
+        xmlns:map="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_weight="1">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <fragment
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/mapAMP"
+                    tools:context=".ui.mappendonor.MapPendonorActivity"
+                    android:name="com.google.android.gms.maps.SupportMapFragment" android:layout_weight="1"/>
+            <Button
+                    android:text="TAMPILKAN DALAM DAFTAR"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/btnExpandListAMP" android:layout_weight="0"
+                    android:background="@color/colorSuccess" android:textColor="@android:color/white"
+                    android:textStyle="bold"/>
+        </LinearLayout>
+        <com.qhutch.bottomsheetlayout.BottomSheetLayout
+                android:id="@+id/bslAMP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_marginTop="16dp">
+
+            <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                         android:background="@android:color/white">
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            map:srcCompat="@drawable/ic_linear_scale_grey_light_24dp"
+                            android:id="@+id/imageView4" android:layout_gravity="center_horizontal"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" android:id="@+id/rvAMP" android:layout_weight="1"
+                            android:layout_marginTop="16dp"/>
+                </LinearLayout>
+            </FrameLayout>
+
+        </com.qhutch.bottomsheetlayout.BottomSheetLayout>
+    </FrameLayout>
+
+</LinearLayout>

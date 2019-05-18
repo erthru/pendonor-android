@@ -84,20 +84,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onUserDataLoaded(data: HashMap<String, String>) {
         headerView.txNamaLengkapHeaderMain.text = data["nama_lengkap"]
         headerView.txEmailHeaderMain.text = data["email"]
-        requirePermission()
     }
 
     override fun onUserDataFailed() {
         finishAffinity()
-    }
-
-    private fun requirePermission(){
-        if(!EasyPermissions.hasPermissions(this, Manifest.permission.ACCESS_COARSE_LOCATION)){
-            EasyPermissions.requestPermissions(this,"Aplikasi membutuhkan akses lokasi",991,Manifest.permission.ACCESS_COARSE_LOCATION)
-        }
-        if(!EasyPermissions.hasPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION)){
-            EasyPermissions.requestPermissions(this,"Aplikasi membutuhkan akses lokasi",992,Manifest.permission.ACCESS_FINE_LOCATION)
-        }
     }
 
 }
