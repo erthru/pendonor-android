@@ -10,11 +10,13 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.widget.Toolbar
 import android.view.View
+import com.bumptech.glide.Glide
 import com.ertohru.pendonor.R
 import com.ertohru.pendonor.base.BaseActivity
 import com.ertohru.pendonor.ui.profil.ProfilFragment
 import com.ertohru.pendonor.ui.beranda.BerandaFragment
 import com.ertohru.pendonor.ui.login.LoginActivity
+import com.ertohru.pendonor.utils.ApiEndPoint
 import com.ertohru.pendonor.utils.SharedPrefPengguna
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import pub.devrel.easypermissions.EasyPermissions
@@ -84,6 +86,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onUserDataLoaded(data: HashMap<String, String>) {
         headerView.txNamaLengkapHeaderMain.text = data["nama_lengkap"]
         headerView.txEmailHeaderMain.text = data["email"]
+        Glide.with(this).load(ApiEndPoint.PENDONOR_UPLOADS+data["foto"]).into(headerView.imgFotoHeaderMain)
     }
 
     override fun onUserDataFailed() {

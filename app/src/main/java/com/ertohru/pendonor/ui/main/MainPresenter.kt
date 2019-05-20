@@ -21,6 +21,7 @@ class MainPresenter(val v:MainView){
                         val data = HashMap<String,String>()
                         data["nama_lengkap"] = response?.getJSONObject("result")?.getString("nama_lengkap")!!
                         data["email"] = response?.getJSONObject("result")?.getString("email")!!
+                        data["foto"] = response?.getJSONObject("result")?.getString("foto")!!
                         v.onUserDataLoaded(data)
                     }
 

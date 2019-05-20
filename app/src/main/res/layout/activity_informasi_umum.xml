@@ -7,4 +7,30 @@
         android:layout_height="match_parent"
         tools:context=".ui.informasiumum.InformasiUmumActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/rvIU" android:clipToPadding="true"
+            android:paddingBottom="8dp">
+    </androidx.recyclerview.widget.RecyclerView>
+    <ProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pbIU" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/rvIU" android:layout_marginStart="8dp"/>
+    <FrameLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginBottom="32dp" android:padding="8dp"
+            android:background="@drawable/circle" android:id="@+id/pbBottomIU" tools:visibility="gone">
+
+        <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar3"/>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
