@@ -20,6 +20,10 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning"
             tools:replace="android:label,android:theme">
+        <activity android:name=".ui.informasiumum.InformasiUmumActivity">
+        </activity>
+        <activity android:name=".ui.stokdarah.StokDarahActivity">
+        </activity>
         <activity android:name=".ui.pendonordetail.PendonorDetailActivity">
         </activity>
         <!--

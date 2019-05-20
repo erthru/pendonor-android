@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.stokdarah.StokDarahActivity">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" app:cardCornerRadius="6dp" android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+                    android:layout_marginBottom="2dp">
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:padding="16dp">
+                    <TextView
+                            android:text="Total Pendonor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView6"
+                            android:textColor="@color/colorAccent" android:textStyle="bold"/>
+                    <TextView
+                            android:text="0 Pendonor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/lbTotalPendonorASD" android:textSize="21dp"/>
+                    <TextView
+                            android:text="Bisa Donor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView11"
+                            android:textColor="@color/colorAccent" android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+                    <TextView
+                            android:text="0 Pendonor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/lbBisaDonorASD" android:textSize="21dp"/>
+                    <TextView
+                            android:text="Bisa Donor Golongan A"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView15"
+                            android:textColor="@color/colorAccent" android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+                    <TextView
+                            android:text="0 Pendonor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/lbBisaDonorAASD" android:textSize="21dp"/>
+                    <TextView
+                            android:text="Bisa Donor Golongan B"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView17"
+                            android:textColor="@color/colorAccent" android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+                    <TextView
+                            android:text="0 Pendonor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/lbBisaDonorBASD" android:textSize="21dp"/>
+                    <TextView
+                            android:text="Bisa Donor Golongan AB"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView19"
+                            android:textColor="@color/colorAccent" android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+                    <TextView
+                            android:text="0 Pendonor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/lbBisaDonorABASD" android:textSize="21dp"/>
+                    <TextView
+                            android:text="Bisa Donor Golongan O"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView21"
+                            android:textColor="@color/colorAccent" android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+                    <TextView
+                            android:text="0 Pendonor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/lbBisaDonorOASD" android:textSize="21dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

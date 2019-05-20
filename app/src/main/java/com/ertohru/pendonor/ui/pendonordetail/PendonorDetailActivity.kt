@@ -1,5 +1,7 @@
 package com.ertohru.pendonor.ui.pendonordetail
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -20,11 +22,15 @@ class PendonorDetailActivity : BaseActivity(),PendonorDetailView {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         btnTelpAPD.setOnClickListener {
-
+            val i = Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+lbTelpAPD.text.toString()))
+            startActivity(i)
         }
 
         btnPesanAPD.setOnClickListener {
-
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse("smsto:" + Uri.encode(lbTelpAPD.text.toString()))
+            i.putExtra("address",lbTelpAPD.text.toString())
+            startActivity(i)
         }
 
     }
@@ -38,6 +44,8 @@ class PendonorDetailActivity : BaseActivity(),PendonorDetailView {
     override fun dataPendonorLoaded(data: HashMap<String, String>) {
         lbNamaLengkapAPD.text = data["nama_lengkap"]
         lbAlamatAPD.text = data["alamat"]
+        lbProvinsiAPD.text = data["provinsi"]
+        lbKotakabuAPD.text = data["kota_kabupaten"]
         lbTelpAPD.text = data["telp"]
         lbJenkelAPD.text = data["jenkel"]
         lbGolonganDarahAPD.text = data["golongan_darah"]

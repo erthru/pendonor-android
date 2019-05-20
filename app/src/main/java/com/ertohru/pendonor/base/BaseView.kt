@@ -6,4 +6,6 @@ interface BaseView{
     fun toastWarning(message:String)
     fun showProgress(message:String)
     fun dismissProgress()
+    fun showProgressBar()
+    fun dismissProgressBar()
 }

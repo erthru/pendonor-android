@@ -25,6 +25,8 @@ class PendonorDetailPresenter(val v:PendonorDetailView){
                     data["nama_lengkap"] = response?.getJSONObject("result")?.getString("nama_lengkap")!!
                     data["telp"] = response?.getJSONObject("result")?.getString("telp")!!
                     data["alamat"] = response?.getJSONObject("result")?.getString("alamat")!!
+                    data["provinsi"] = response?.getJSONObject("result")?.getJSONObject("provinsi")?.getString("provinsi")!!
+                    data["kota_kabupaten"] = response?.getJSONObject("result")?.getJSONObject("kotakabu")?.getString("kota_kabupaten")!!
                     data["jenkel"] = response?.getJSONObject("result")?.getString("jenkel")!!
                     data["golongan_darah"] = response?.getJSONObject("result")?.getString("golongan_darah")!!
                     data["resus"] = response?.getJSONObject("result")?.getString("resus")!!

@@ -48,11 +48,11 @@ abstract class BaseFragment : Fragment(),BaseView {
         this.progressBar = progressBar
     }
 
-    fun showProgressBar(){
+    override fun showProgressBar(){
         this.progressBar.visibility = View.VISIBLE
     }
 
-    fun dismissProgressBar(){
+    override fun dismissProgressBar(){
         this.progressBar.visibility = View.GONE
     }
 }
