@@ -44,8 +44,6 @@ class PendonorDetailActivity : BaseActivity(),PendonorDetailView {
     override fun dataPendonorLoaded(data: HashMap<String, String>) {
         lbNamaLengkapAPD.text = data["nama_lengkap"]
         lbAlamatAPD.text = data["alamat"]
-        lbProvinsiAPD.text = data["provinsi"]
-        lbKotakabuAPD.text = data["kota_kabupaten"]
         lbTelpAPD.text = data["telp"]
         lbJenkelAPD.text = data["jenkel"]
         lbGolonganDarahAPD.text = data["golongan_darah"]

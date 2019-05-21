@@ -47,8 +47,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             BerandaFragment()
         ).commit()
 
-        presenter.loadDataUser(SharedPrefPengguna(this).id()!!)
+    }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.loadDataUser(SharedPrefPengguna(this).id()!!)
     }
 
     override fun onBackPressed() {

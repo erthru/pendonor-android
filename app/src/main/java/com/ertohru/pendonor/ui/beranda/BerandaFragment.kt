@@ -38,6 +38,11 @@ class BerandaFragment : BaseFragment(),BerandaView {
         v.btnStokDarahBeranda.setOnClickListener { startActivity(Intent(context,StokDarahActivity::class.java)) }
         v.btnInformasiUmumBeranda.setOnClickListener { startActivity(Intent(context,InformasiUmumActivity::class.java)) }
 
+        v.swipeBeranda.setColorSchemeResources(R.color.colorAccent)
+        v.swipeBeranda.setOnRefreshListener {
+            fragmentManager?.beginTransaction()?.detach(this)?.attach(this)?.commit()
+        }
+
         return v
     }
 
