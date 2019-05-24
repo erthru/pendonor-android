@@ -21,6 +21,8 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning"
             tools:replace="android:label,android:theme">
+        <activity android:name=".ui.informasiumumdetail.InformasiUmumDetailActivity">
+        </activity>
         <activity android:name=".ui.informasiumum.InformasiUmumActivity">
         </activity>
         <activity android:name=".ui.stokdarah.StokDarahActivity">

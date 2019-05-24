@@ -2,9 +2,11 @@ package com.ertohru.pendonor.ui.informasiumum
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ertohru.pendonor.R
 import com.ertohru.pendonor.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_informasi_umum.*
@@ -12,6 +14,8 @@ import kotlinx.android.synthetic.main.activity_informasi_umum.*
 class InformasiUmumActivity : BaseActivity(),InformasiUmumView {
 
     private val presenter = InformasiUmumPresenter(this)
+    private lateinit var parcelable: Parcelable
+    private var datas = ArrayList<InformasiUmumData>()
 
     companion object{
         var ON_LAST_PAGE = false
@@ -31,6 +35,33 @@ class InformasiUmumActivity : BaseActivity(),InformasiUmumView {
         initProgressBar(pbIU)
         dismissProgressBottom()
 
+        rvIU.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+
+            var directiorDown:Boolean = false
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                directiorDown = dy > 0
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+
+                if (recyclerView?.canScrollVertically(1)?.not()!!
+                    && newState == RecyclerView.SCROLL_STATE_IDLE
+                    && directiorDown) {
+
+                    if(!ON_LAST_PAGE){
+                        presenter.loadInformasiUmumNext()
+                        parcelable = rvIU.layoutManager?.onSaveInstanceState()!!
+                    }
+
+                }else{
+
+                }
+
+            }
+        })
+
+
     }
 
     override fun onResume() {
@@ -47,13 +78,18 @@ class InformasiUmumActivity : BaseActivity(),InformasiUmumView {
     }
 
     override fun onInformasiUmumLoaded(data: ArrayList<InformasiUmumData>?) {
-        val adapter = InformasiUmumAdapter(this,data)
+        datas.addAll(data!!)
+        val adapter = InformasiUmumAdapter(this,datas)
         adapter.notifyDataSetChanged()
         rvIU.adapter = adapter
     }
 
     override fun onInformasiUmumNextLoaded(data: ArrayList<InformasiUmumData>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        datas.addAll(data!!)
+        val adapter = InformasiUmumAdapter(this,datas)
+        adapter.notifyDataSetChanged();
+        rvIU.adapter = adapter
+        rvIU.layoutManager?.onRestoreInstanceState(parcelable)
     }
 
     override fun showProgressBottom() {
