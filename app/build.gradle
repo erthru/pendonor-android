@@ -49,5 +49,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.zhihu.android:matisse:0.5.2-beta4'
-    implementation  'org.jsoup:jsoup:1.12.1'
+    implementation 'org.jsoup:jsoup:1.12.1'
 }

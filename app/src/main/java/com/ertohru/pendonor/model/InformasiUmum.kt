@@ -1,6 +1,6 @@
-package com.ertohru.pendonor.ui.beranda
+package com.ertohru.pendonor.model
 
-data class InformasiUmumData(
+data class InformasiUmum(
     val id:Int?,
     val judul:String?,
     val konten:String?,

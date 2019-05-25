@@ -5,6 +5,7 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
+import com.ertohru.pendonor.model.InformasiUmum
 import com.ertohru.pendonor.utils.ApiEndPoint
 import com.ertohru.pendonor.utils.Const.Companion.KONEKSI_ERROR
 import org.json.JSONObject
@@ -23,18 +24,20 @@ class InformasiUmumPresenter(private val v:InformasiUmumView){
 
                     v.dismissProgressBar()
 
-                    val data = ArrayList<InformasiUmumData>()
+                    val data = ArrayList<InformasiUmum>()
                     val jsonArrayData = response?.getJSONObject("result")?.getJSONArray("data")
 
                     for(i in 0 until jsonArrayData?.length()!!){
-                        data.add(InformasiUmumData(
-                            jsonArrayData.getJSONObject(i).getInt("id"),
-                            jsonArrayData.getJSONObject(i).getString("judul"),
-                            jsonArrayData.getJSONObject(i).getString("konten"),
-                            jsonArrayData.getJSONObject(i).getString("rendered_konten"),
-                            jsonArrayData.getJSONObject(i).getString("thumbnail"),
-                            jsonArrayData.getJSONObject(i).getJSONObject("admin").getString("nama_lengkap")
-                        ))
+                        data.add(
+                            InformasiUmum(
+                                jsonArrayData.getJSONObject(i).getInt("id"),
+                                jsonArrayData.getJSONObject(i).getString("judul"),
+                                jsonArrayData.getJSONObject(i).getString("konten"),
+                                jsonArrayData.getJSONObject(i).getString("rendered_konten"),
+                                jsonArrayData.getJSONObject(i).getString("thumbnail"),
+                                jsonArrayData.getJSONObject(i).getJSONObject("admin").getString("nama_lengkap")
+                            )
+                        )
                     }
 
                     InformasiUmumActivity.CURRENT_PAGE = response?.getJSONObject("result")?.getInt("current_page")!!
@@ -68,18 +71,20 @@ class InformasiUmumPresenter(private val v:InformasiUmumView){
 
                     v.dismissProgressBottom()
 
-                    val data = ArrayList<InformasiUmumData>()
+                    val data = ArrayList<InformasiUmum>()
                     val jsonArrayData = response?.getJSONObject("result")?.getJSONArray("data")
 
                     for(i in 0 until jsonArrayData?.length()!!){
-                        data.add(InformasiUmumData(
-                            jsonArrayData.getJSONObject(i).getInt("id"),
-                            jsonArrayData.getJSONObject(i).getString("judul"),
-                            jsonArrayData.getJSONObject(i).getString("konten"),
-                            jsonArrayData.getJSONObject(i).getString("rendered_konten"),
-                            jsonArrayData.getJSONObject(i).getString("thumbnail"),
-                            jsonArrayData.getJSONObject(i).getJSONObject("admin").getString("nama_lengkap")
-                        ))
+                        data.add(
+                            InformasiUmum(
+                                jsonArrayData.getJSONObject(i).getInt("id"),
+                                jsonArrayData.getJSONObject(i).getString("judul"),
+                                jsonArrayData.getJSONObject(i).getString("konten"),
+                                jsonArrayData.getJSONObject(i).getString("rendered_konten"),
+                                jsonArrayData.getJSONObject(i).getString("thumbnail"),
+                                jsonArrayData.getJSONObject(i).getJSONObject("admin").getString("nama_lengkap")
+                            )
+                        )
                     }
 
                     InformasiUmumActivity.CURRENT_PAGE = response?.getJSONObject("result")?.getInt("current_page")!!

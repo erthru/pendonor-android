@@ -5,6 +5,7 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
+import com.ertohru.pendonor.model.InformasiUmum
 import com.ertohru.pendonor.utils.ApiEndPoint
 import com.ertohru.pendonor.utils.Const.Companion.KONEKSI_ERROR
 import org.json.JSONObject
@@ -22,10 +23,10 @@ class BerandaPresenter(private val v:BerandaView){
                 override fun onResponse(response: JSONObject?) {
 
                     val data = response?.getJSONObject("result")?.getJSONArray("data")
-                    val informasiUmum = ArrayList<InformasiUmumData>()
+                    val informasiUmum = ArrayList<InformasiUmum>()
                     for(i in 0 until data?.length()!!){
 
-                        informasiUmum.add(InformasiUmumData(
+                        informasiUmum.add(InformasiUmum(
                             data.getJSONObject(i)?.getInt("id"),
                             data.getJSONObject(i)?.getString("judul"),
                             data.getJSONObject(i)?.getString("konten"),
