@@ -75,6 +75,16 @@
                             android:text="TextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" android:id="@+id/lbResusAPD" android:textSize="21dp"/>
+                    <TextView
+                            android:text="Tgl Terakhir Donor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:textStyle="bold"
+                            android:layout_marginTop="10dp" android:textColor="@color/colorAccent"
+                            android:id="@+id/textView10"/>
+                    <TextView
+                            android:text="TextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/lbTerakhirDonorAPD" android:textSize="21dp"/>
                     <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"

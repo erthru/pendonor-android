@@ -1,4 +1,4 @@
-package com.ertohru.pendonor.ui.mappendonor
+package com.ertohru.pendonor.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -6,18 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.ertohru.pendonor.R
+import com.ertohru.pendonor.model.Pendonor
 import com.ertohru.pendonor.ui.caripendonor.CariPendonorActivity
 import com.ertohru.pendonor.ui.pendonordetail.PendonorDetailActivity
 import com.ertohru.pendonor.utils.Distance
-import kotlinx.android.synthetic.main.list_map_pendonor.view.*
+import kotlinx.android.synthetic.main.list_pendonor.view.*
 import java.text.DecimalFormat
 
-class PendonorDataAdapter(val context: Context, val data:ArrayList<PendonorData>?) : RecyclerView.Adapter<PendonorDataAdapter.ViewHolder>(){
+class PendonorDataAdapter(val context: Context, val data:ArrayList<Pendonor>?) : RecyclerView.Adapter<PendonorDataAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_map_pendonor,parent,false))
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.list_pendonor,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int = data?.size ?: 0
@@ -28,7 +34,7 @@ class PendonorDataAdapter(val context: Context, val data:ArrayList<PendonorData>
 
 
     class ViewHolder(val v: View) : RecyclerView.ViewHolder(v){
-        fun init(context: Context, data: ArrayList<PendonorData>, position: Int){
+        fun init(context: Context, data: ArrayList<Pendonor>, position: Int){
             v.lbNameLMP.text = data[position].namaLengkap
             v.lbResusLMP.text = "RESUS: "+data[position].resus
             v.lbListLMP.text = DecimalFormat("#.##").format(Distance.calculate(

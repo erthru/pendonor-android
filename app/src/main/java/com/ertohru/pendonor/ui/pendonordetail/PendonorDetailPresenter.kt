@@ -42,4 +42,33 @@ class PendonorDetailPresenter(val v:PendonorDetailView){
 
     }
 
+    fun loadPendonorTerakhirDonor(id:String){
+
+        AndroidNetworking.get(ApiEndPoint.PENDONOR+"riwayat/pendonor/"+id)
+            .setPriority(Priority.HIGH)
+            .build()
+            .getAsJSONObject(object: JSONObjectRequestListener{
+                override fun onResponse(response: JSONObject?) {
+                    v.dismissProgress()
+
+                    val data = HashMap<String, String>()
+                    if(response?.getJSONObject("result")?.getJSONArray("data")?.length() == 0){
+                        data["tgl_donor"] = "-"
+                    }else{
+                        data["tgl_donor"] = response?.getJSONObject("result")?.getJSONArray("data")?.getJSONObject(0)?.getString("tgl_donor")!!
+                    }
+                    v.dataPendonorTerakhirDonor(data)
+
+                }
+
+                override fun onError(anError: ANError?) {
+                    v.dismissProgress()
+                    v.toastError(KONEKSI_ERROR)
+                    v.onDataPendonorTerakhirDonorFailed()
+                }
+
+            })
+
+    }
+
 }

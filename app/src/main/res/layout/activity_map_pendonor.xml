@@ -29,28 +29,36 @@
         </LinearLayout>
         <com.qhutch.bottomsheetlayout.BottomSheetLayout
                 android:id="@+id/bslAMP"
+                android:background="#FFFFFF"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:layout_marginTop="16dp">
 
-            <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                         android:background="@android:color/white">
-                <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            map:srcCompat="@drawable/ic_linear_scale_grey_light_24dp"
-                            android:id="@+id/imageView4" android:layout_gravity="center_horizontal"/>
-                    <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" android:id="@+id/rvAMP" android:layout_weight="1"
-                            android:layout_marginTop="16dp"/>
-                </LinearLayout>
-            </FrameLayout>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:background="#FFFFFF">
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        map:srcCompat="@drawable/ic_linear_scale_grey_light_24dp"
+                        android:id="@+id/imageView4" android:layout_gravity="center_horizontal"/>
+            </LinearLayout>
 
         </com.qhutch.bottomsheetlayout.BottomSheetLayout>
+
+        <FrameLayout
+                android:id="@+id/frameRVAMP"
+                android:background="#FFFFFF"
+                android:layout_marginTop="36dp"
+                android:animateLayoutChanges="true"
+                android:visibility="gone"
+                android:layout_width="match_parent" android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/rvAMP" android:layout_weight="1"
+                    android:layout_marginTop="16dp"/>
+        </FrameLayout>
+
     </FrameLayout>
 
 </LinearLayout>

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.ertohru.pendonor.R
 import com.ertohru.pendonor.adapter.InformasiUmumAdapter
+import com.ertohru.pendonor.adapter.InformasiUmumHorizontalAdapter
 import com.ertohru.pendonor.base.BaseFragment
 import com.ertohru.pendonor.model.InformasiUmum
 import com.ertohru.pendonor.ui.caripendonor.CariPendonorActivity
@@ -54,7 +55,7 @@ class BerandaFragment : BaseFragment(),BerandaView {
     }
 
     override fun onInformasiUmumLoaded(data: ArrayList<InformasiUmum>) {
-        val adapter = InformasiUmumAdapter(context!!,data)
+        val adapter = InformasiUmumHorizontalAdapter(context!!,data)
         adapter.notifyDataSetChanged()
         v.rvInformasiUmumBeranda.adapter = adapter
     }

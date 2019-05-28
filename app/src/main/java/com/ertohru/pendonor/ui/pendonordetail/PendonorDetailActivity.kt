@@ -39,6 +39,7 @@ class PendonorDetailActivity : BaseActivity(),PendonorDetailView {
         super.onResume()
         val i = intent
         presenter.loadPendonorDetail(i.getStringExtra("id"))
+        presenter.loadPendonorTerakhirDonor(i.getStringExtra("id"))
     }
 
     override fun dataPendonorLoaded(data: HashMap<String, String>) {
@@ -62,6 +63,14 @@ class PendonorDetailActivity : BaseActivity(),PendonorDetailView {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun dataPendonorTerakhirDonor(data: HashMap<String, String>) {
+        lbTerakhirDonorAPD.text = data["tgl_donor"]
+    }
+
+    override fun onDataPendonorTerakhirDonorFailed() {
+        this.finish()
     }
 
 }

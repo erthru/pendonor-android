@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
-              android:layout_width="wrap_content"
+              android:layout_width="280dp"
               android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-            android:layout_width="280dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp" android:layout_marginBottom="2dp" android:id="@+id/cardLIUB"
+            android:layout_marginTop="10dp" android:layout_marginBottom="2dp" android:id="@+id/cardLIUH"
             android:clickable="true" android:foreground="?attr/selectableItemBackground" app:cardCornerRadius="6dp"
     >
         <FrameLayout
@@ -18,7 +18,7 @@
             <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/imgBackgroundLIUB" tools:srcCompat="@drawable/ic_launcher_background"
+                    android:id="@+id/imgBackgroundLIUH" tools:srcCompat="@drawable/ic_launcher_background"
                     android:scaleType="centerCrop"/>
             <FrameLayout
                     android:layout_width="match_parent"
@@ -33,12 +33,12 @@
                 <TextView
                         android:text="Judul Informasi"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/lbJudulLIUP" android:textStyle="bold"
+                        android:layout_height="wrap_content" android:id="@+id/lbJudulLIUH" android:textStyle="bold"
                         android:textSize="19dp" android:singleLine="true" android:textColor="@android:color/white"/>
                 <TextView
                         android:text="TextView"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/lbKontenLIUB" android:singleLine="true"
+                        android:layout_height="wrap_content" android:id="@+id/lbKontenLIUH" android:singleLine="true"
                         android:textColor="@android:color/white"/>
             </LinearLayout>
         </FrameLayout>

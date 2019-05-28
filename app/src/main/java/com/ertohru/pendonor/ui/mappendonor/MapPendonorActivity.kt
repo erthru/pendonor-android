@@ -1,18 +1,19 @@
 package com.ertohru.pendonor.ui.mappendonor
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.ertohru.pendonor.R
+import com.ertohru.pendonor.adapter.PendonorDataAdapter
 import com.ertohru.pendonor.base.BaseActivity
+import com.ertohru.pendonor.model.Pendonor
 import com.ertohru.pendonor.ui.caripendonor.CariPendonorActivity
 import com.ertohru.pendonor.ui.pendonordetail.PendonorDetailActivity
 
@@ -43,8 +44,17 @@ class MapPendonorActivity : BaseActivity(), MapPendonorView,OnMapReadyCallback {
 
         rvAMP.setHasFixedSize(true)
         rvAMP.layoutManager = LinearLayoutManager(this)
+        rvAMP.isNestedScrollingEnabled = false
 
         btnExpandListAMP.setOnClickListener { bslAMP.expand() }
+        bslAMP.setOnProgressListener {
+            Log.d("Progress",it.toString())
+            if(it == 1f){
+                frameRVAMP.visibility = View.VISIBLE
+            }else{
+                frameRVAMP.visibility = View.GONE
+            }
+        }
 
     }
 
@@ -67,7 +77,7 @@ class MapPendonorActivity : BaseActivity(), MapPendonorView,OnMapReadyCallback {
     }
 
     @SuppressLint("MissingPermission")
-    override fun onPendonorLoaded(data: ArrayList<PendonorData>?) {
+    override fun onPendonorLoaded(data: ArrayList<Pendonor>?) {
 
         val markers = ArrayList<Marker>()
 
@@ -79,7 +89,7 @@ class MapPendonorActivity : BaseActivity(), MapPendonorView,OnMapReadyCallback {
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(CariPendonorActivity.LAT.toDouble(),CariPendonorActivity.LNG.toDouble()), 16.0f))
 
-        val adapter = PendonorDataAdapter(this,data)
+        val adapter = PendonorDataAdapter(this, data)
         adapter.notifyDataSetChanged()
         rvAMP.adapter = adapter
 

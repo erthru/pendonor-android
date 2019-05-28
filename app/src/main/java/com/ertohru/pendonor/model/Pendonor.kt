@@ -1,6 +1,6 @@
-package com.ertohru.pendonor.ui.mappendonor
+package com.ertohru.pendonor.model
 
-data class PendonorData (
+data class Pendonor (
     val id:String,
     val namaLengkap:String,
     val alamat:String,
