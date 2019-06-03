@@ -28,16 +28,20 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
 
         initProgressBar(pbSplash)
 
-        if(!EasyPermissions.hasPermissions(applicationContext, Manifest.permission.ACCESS_COARSE_LOCATION) || !EasyPermissions.hasPermissions(applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) || !EasyPermissions.hasPermissions(applicationContext, Manifest.permission.READ_EXTERNAL_STORAGE)){
-            EasyPermissions.requestPermissions(this@SplashActivity,"Aplikasi membutuhkan akses lokasi",993, Manifest.permission.READ_EXTERNAL_STORAGE)
-            EasyPermissions.requestPermissions(this@SplashActivity,"Aplikasi membutuhkan akses lokasi",992, Manifest.permission.ACCESS_FINE_LOCATION)
-            EasyPermissions.requestPermissions(this@SplashActivity,"Aplikasi membutuhkan akses lokasi",991, Manifest.permission.ACCESS_COARSE_LOCATION)
+        val perms:Array<String> = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_EXTERNAL_STORAGE)
+
+        if(!EasyPermissions.hasPermissions(applicationContext, *perms)){
+            EasyPermissions.requestPermissions(this@SplashActivity,"Aplikasi membutuhkan izin",993, *perms)
         }else{
             Handler().postDelayed({
-                if(!SharedPrefPengguna(this).isLogin()!!)
-                    startActivity(Intent(this,LoginActivity::class.java))
-                else
-                    startActivity(Intent(this,MainActivity::class.java))
+                if(!SharedPrefPengguna(this).isLogin()!!) {
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
+                }
+                else {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }
             },delay)
         }
 
@@ -64,10 +68,14 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
 
         Handler().postDelayed({
-            if(!SharedPrefPengguna(this).isLogin()!!)
-                startActivity(Intent(this,LoginActivity::class.java))
-            else
-                startActivity(Intent(this,MainActivity::class.java))
+            if(!SharedPrefPengguna(this).isLogin()!!) {
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
+            else {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
         },delay)
 
     }
