@@ -10,6 +10,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.MenuItem
 import com.afollestad.materialdialogs.MaterialDialog
 import com.ertohru.pendonor.R
@@ -17,6 +18,7 @@ import com.ertohru.pendonor.base.BaseActivity
 import com.ertohru.pendonor.ui.mappendonor.MapPendonorActivity
 import com.ertohru.pendonor.utils.SharedPrefPengguna
 import com.ertohru.pendonor.utils.spinneritem.GolonganDarahSpinner
+import com.google.android.gms.location.LocationServices
 import com.vanillaplacepicker.data.VanillaAddress
 import com.vanillaplacepicker.presentation.builder.VanillaPlacePicker
 import com.vanillaplacepicker.utils.KeyUtils
@@ -95,16 +97,19 @@ class CariPendonorActivity : BaseActivity(),CariPendonorView {
     @SuppressLint("MissingPermission")
     private fun placePicker(){
 
-        val lm: LocationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
 
-        val intent = VanillaPlacePicker.Builder(this)
-            .withLocation(location.latitude, location.longitude)
-            .enableMap()
-            .setMapPinDrawable(android.R.drawable.ic_menu_mylocation)
-            .build()
+        val fusedLocation = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocation.lastLocation.addOnSuccessListener {
+            val lat = it.latitude
+            val lng = it.longitude
+            val intent = VanillaPlacePicker.Builder(this)
+                .withLocation(lat, lng)
+                .enableMap()
+                .setMapPinDrawable(android.R.drawable.ic_menu_mylocation)
+                .build()
 
-        startActivityForResult(intent, 1)
+            startActivityForResult(intent, 1)
+        }
 
     }
 

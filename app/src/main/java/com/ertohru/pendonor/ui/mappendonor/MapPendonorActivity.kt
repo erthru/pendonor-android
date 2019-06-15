@@ -87,7 +87,7 @@ class MapPendonorActivity : BaseActivity(), MapPendonorView,OnMapReadyCallback {
             markers.add(marker)
         }
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(CariPendonorActivity.LAT.toDouble(),CariPendonorActivity.LNG.toDouble()), 16.0f))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(CariPendonorActivity.LAT.toDouble(),CariPendonorActivity.LNG.toDouble()), 14.0f))
 
         val adapter = PendonorDataAdapter(this, data)
         adapter.notifyDataSetChanged()

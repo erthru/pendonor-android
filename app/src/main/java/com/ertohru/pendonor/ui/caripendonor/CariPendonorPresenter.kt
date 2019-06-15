@@ -10,6 +10,7 @@ import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.ertohru.pendonor.utils.ApiEndPoint
+import com.google.android.gms.location.LocationServices
 import org.json.JSONObject
 
 class CariPendonorPresenter(val context: Context, val v:CariPendonorView){
@@ -19,12 +20,18 @@ class CariPendonorPresenter(val context: Context, val v:CariPendonorView){
 
         v.showProgress("Memuat lokasi pengguna...")
 
-        val lm: LocationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+        val fusedLocation = LocationServices.getFusedLocationProviderClient(context)
+        fusedLocation.lastLocation.addOnSuccessListener {
+            val lat = it.latitude.toString()
+            val lng = it.longitude.toString()
+            fetchLocation(lat,lng)
+        }
+    }
 
+    private fun fetchLocation(lat:String, lng:String){
         AndroidNetworking.get(ApiEndPoint.PENDONOR+"external/geocoding/reverse")
-            .addQueryParameter("lat",location.latitude.toString())
-            .addQueryParameter("lng",location.longitude.toString())
+            .addQueryParameter("lat",lat)
+            .addQueryParameter("lng",lng)
             .setPriority(Priority.HIGH)
             .build()
             .getAsJSONObject(object: JSONObjectRequestListener{
@@ -36,8 +43,8 @@ class CariPendonorPresenter(val context: Context, val v:CariPendonorView){
                         val locationName = response?.getJSONArray("results")?.getJSONObject(0)?.getString("formatted_address")
                         val data = HashMap<String, String>()
                         data["location_name"] = locationName!!
-                        CariPendonorActivity.LAT = location.latitude.toString()
-                        CariPendonorActivity.LNG = location.longitude.toString()
+                        CariPendonorActivity.LAT = lat
+                        CariPendonorActivity.LNG = lng
                         v.onUserCurrentLocationLoaded(data)
                     }else{
                         v.toastError("Gagal mengambil lokasi pengguna, silahkan ganti secara manual")
