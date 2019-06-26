@@ -66,4 +66,24 @@ class MapPendonorPresenter(val v:MapPendonorView){
 
     }
 
+    fun addSearchHistory(golonganDarah: String){
+
+        AndroidNetworking.post(ApiEndPoint.PENDONOR+"search_history")
+            .addBodyParameter("golongan_darah",golonganDarah)
+            .setPriority(Priority.HIGH)
+            .build()
+            .getAsJSONObject(object: JSONObjectRequestListener{
+                override fun onResponse(response: JSONObject?) {
+                    Log.d("ON_RESPONSE",response.toString())
+                }
+
+                override fun onError(anError: ANError?) {
+                    Log.d("ANERROR",anError?.errorBody.toString())
+                }
+
+            })
+
+    }
+
+
 }

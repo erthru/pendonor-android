@@ -74,6 +74,8 @@ class MapPendonorActivity : BaseActivity(), MapPendonorView,OnMapReadyCallback {
             CariPendonorActivity.LNG
         )
         mMap = googleMap
+
+        presenter.addSearchHistory(i.getStringExtra("golongan_darah"))
     }
 
     @SuppressLint("MissingPermission")
