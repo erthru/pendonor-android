@@ -57,6 +57,8 @@ class CariPendonorActivity : BaseActivity(),CariPendonorView {
             }else{
                 val intent = Intent(this, MapPendonorActivity::class.java)
                 intent.putExtra("golongan_darah",spinnerGolonganDarahACP.text.toString())
+                intent.putExtra("my_lat", LAT)
+                intent.putExtra("my_lng", LNG)
                 startActivity(intent)
             }
         }

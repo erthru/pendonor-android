@@ -18,4 +18,8 @@
             android:text="RESUS: -"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/lbResusDDMP"/>
+    <TextView
+            android:text="Jarak: 0 KM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/lbJarakDDMP"/>
 </LinearLayout>

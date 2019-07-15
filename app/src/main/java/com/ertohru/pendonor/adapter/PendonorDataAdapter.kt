@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ertohru.pendonor.R
 import com.ertohru.pendonor.model.Pendonor
+import com.ertohru.pendonor.model.PendonorWithDistance
 import com.ertohru.pendonor.ui.caripendonor.CariPendonorActivity
 import com.ertohru.pendonor.ui.pendonordetail.PendonorDetailActivity
 import com.ertohru.pendonor.utils.Distance
 import kotlinx.android.synthetic.main.list_pendonor.view.*
 import java.text.DecimalFormat
 
-class PendonorDataAdapter(val context: Context, val data:ArrayList<Pendonor>?) : RecyclerView.Adapter<PendonorDataAdapter.ViewHolder>(){
+class PendonorDataAdapter(val context: Context, val data:ArrayList<PendonorWithDistance>?) : RecyclerView.Adapter<PendonorDataAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -34,15 +35,10 @@ class PendonorDataAdapter(val context: Context, val data:ArrayList<Pendonor>?) :
 
 
     class ViewHolder(val v: View) : RecyclerView.ViewHolder(v){
-        fun init(context: Context, data: ArrayList<Pendonor>, position: Int){
+        fun init(context: Context, data: ArrayList<PendonorWithDistance>, position: Int){
             v.lbNameLMP.text = data[position].namaLengkap
             v.lbResusLMP.text = "RESUS: "+data[position].resus
-            v.lbListLMP.text = DecimalFormat("#.##").format(Distance.calculate(
-                CariPendonorActivity.LAT.toDouble(),
-                CariPendonorActivity.LNG.toDouble(),
-                data[position].lat.toDouble(),
-                data[position].lng.toDouble()
-            )).toString()+ " KM"
+            v.lbListLMP.text = data[position].distance.substring(0,4) + "KM"
 
             v.cardLMP.setOnClickListener {
                 val intent = Intent(context,PendonorDetailActivity::class.java)
