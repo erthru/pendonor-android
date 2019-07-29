@@ -56,9 +56,10 @@ class MapPendonorPresenter(val context: Context, val v:MapPendonorView){
                                 )
                             )
                         }
+                        v.toastSuccess("Pendonor ditemukan")
                         v.onPendonorLoaded(data)
                     }else{
-                        v.toastError("Tidak ada data yang tersedia")
+                        v.toastError("Pendonor tidak ditemukan")
                         v.onPendonorDataEmpty()
                     }
 

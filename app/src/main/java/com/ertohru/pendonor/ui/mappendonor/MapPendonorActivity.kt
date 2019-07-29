@@ -40,6 +40,7 @@ class MapPendonorActivity : BaseActivity(), MapPendonorView,OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private val presenter = MapPendonorPresenter(this,this)
+    private val polylines = ArrayList<com.google.android.gms.maps.model.Polyline>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -134,6 +135,9 @@ class MapPendonorActivity : BaseActivity(), MapPendonorView,OnMapReadyCallback {
                         startActivity(intent)
                     }
                     negativeButton(text = "RUTE"){
+                        for (polyline in polylines){
+                            polyline.remove()
+                        }
 
                         val origin = CariPendonorActivity.LAT + "," + CariPendonorActivity.LNG
                         val destination = data[cb.tag.toString().toInt()].lat + "," + data[cb.tag.toString().toInt()].lng
@@ -153,7 +157,7 @@ class MapPendonorActivity : BaseActivity(), MapPendonorView,OnMapReadyCallback {
     }
 
     override fun onPolyDrawed(poly: PolylineOptions) {
-        mMap.addPolyline(poly)
+        polylines.add(mMap.addPolyline(poly))
     }
 
 
